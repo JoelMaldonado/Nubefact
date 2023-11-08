@@ -1,10 +1,12 @@
-const express = require('express')
+import express from 'express';
+import cors from 'cors';
+import axios from 'axios';
+import dotenv from 'dotenv';
+
 const app = express();
-const cors = require('cors');
-const axios = require('axios');
-require('dotenv').config();
 app.use(express.json())
 app.use(cors());
+dotenv.config();
 
 app.post('/nubefact', (req, res) => {
 
@@ -25,7 +27,7 @@ app.post('/nubefact', (req, res) => {
             if (error.response) {
                 res.status(error.response.status).json(error.response.data);
             } else {
-                res.status(500).json({ error: 'Hubo un error al realizar la solicitud al servicio de boletas' });
+                res.status(500).json({ error: 'Hubo un error al realizar la solicitud' });
             }
         });
 });
